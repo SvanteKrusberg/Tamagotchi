@@ -17,7 +17,7 @@ namespace Tamagotchi
         {
             Console.WriteLine("You feed " + name + " something to eat!");
             Console.WriteLine("It's hunger decreased to: " + hunger);
-            hunger = hunger - 2;
+            hunger = hunger - 1;
             
         }
 
@@ -30,29 +30,25 @@ namespace Tamagotchi
 
         public void CookCurry(string ingredient)
         {
-            string rarity = " ";
-            int r = Utils.generator.Next(10);
+            Curry c1 = new Curry(ingredient);
 
-            if(r == 0)
+            if (c1.GetCurryRarity() == 2)
             {
-                rarity = "Legenday";
                 Console.ForegroundColor = ConsoleColor.Yellow;
 
             }
-            else if(r > 0 && r < 4)
+            else if(c1.GetCurryRarity() == 1)
             {
-                rarity = "Rare";
                 Console.ForegroundColor = ConsoleColor.Blue;
 
             }
             else
             {
-                rarity = "Common";
                 Console.ForegroundColor = ConsoleColor.White;
 
             }
 
-            Console.WriteLine("You made a " + rarity + " " +  ingredient + " curry!" );
+            Console.WriteLine("You made a " + c1.WriteCurryRarity() + " " +  ingredient + " curry!" );
             Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.White;
 

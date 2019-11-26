@@ -14,7 +14,7 @@ namespace Tamagotchi
         static void Main(string[] args)
         {
             RestClient client = new RestClient("https://pokeapi.co/api/v2/");
-            bool validUserInput;
+
             string userinput;
             List<Curry> currys;
             Tamagotchi tamagotchi1 = new Tamagotchi();            
@@ -94,6 +94,7 @@ namespace Tamagotchi
 
                 else if (userinput == "c")
                 {
+
                     Console.WriteLine("What should the main ingredient be?");
                     string ingredient = Console.ReadLine();
                     tamagotchi1.CookCurry(ingredient);
