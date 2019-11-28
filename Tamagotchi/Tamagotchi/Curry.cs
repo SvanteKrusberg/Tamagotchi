@@ -8,7 +8,7 @@ namespace Tamagotchi
 {
     class Curry
     {
-        private string name;
+        public string name;
         private string[] rarity = { "Common", "Rare", "Legendary" };
         private int[] foodPoints = { 1, 2, 3 };
         private int rarityDeclaration;
@@ -17,11 +17,11 @@ namespace Tamagotchi
         {
             int rarityDecider = Utils.generator.Next(10);
 
-            if(rarityDecider == 0)
+            if (rarityDecider == 0)
             {
                 rarityDeclaration = 2;
             }
-            else if(rarityDecider < 4 && rarityDecider != 0)
+            else if (rarityDecider < 4 && rarityDecider != 0)
             {
                 rarityDeclaration = 1;
 
@@ -31,10 +31,10 @@ namespace Tamagotchi
                 rarityDeclaration = 0;
 
             }
-            
+
             name = _name + " curry";
-            
-            
+
+
         }
 
         public int GetCurryRarity()
