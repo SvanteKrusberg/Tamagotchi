@@ -12,7 +12,7 @@ namespace Tamagotchi
         private int boredom;
         private int level = 1;
         public int experiencePoints;
-        public int requiredExp;
+        public int requiredExp = 0;
         private bool isAlive = true;
         public string name;
 
@@ -43,8 +43,9 @@ namespace Tamagotchi
         //En metod som tränar tamagotchin/pokemonen
         public void Train()
         {
-            int rExp = Utils.generator.Next(200, 400);
+            int rExp = Utils.generator.Next(50, 100);
             hunger++;
+            experiencePoints = experiencePoints + rExp;
 
             Console.WriteLine(name + " got " + rExp + " experince points but it's hunger increased to: " + hunger 
                 + "!");
@@ -100,13 +101,14 @@ namespace Tamagotchi
 
         }
 
+        //Metod som skriver ut tamagotchins stats
         public void PrintStats()
         {
             Console.WriteLine("Hunger: " + hunger);
             Console.WriteLine("Boredom: " + boredom);
             Console.WriteLine("Level: " + level);
-            Console.WriteLine("Exp: " + experiencePoints);
-
+            Console.WriteLine("Current Exp: " + experiencePoints);
+            Console.WriteLine("Exp left to next level: " + (requiredExp * level - experiencePoints));
 
             if (isAlive == true)
             {
@@ -124,8 +126,10 @@ namespace Tamagotchi
 
         }
 
+        //Metod som minskar boredom
         private void Reduceboredom()
         {
+            //Om boredomen skulle bli mindre än 0 så sätts den bara till 0 istället
             if (boredom <= 1)
             {
                 boredom = 0;
@@ -140,20 +144,24 @@ namespace Tamagotchi
 
         }
 
+        //Returnerar pokemonens level så den kan användas i senare ekvation
         public int GetLevel()
         {
             return level;
+
         }
 
+        //En metod som körs när pokemonen/tamagotchin levlar!
         public void LevelUp()
         {
             level++;
             Console.ForegroundColor = ConsoleColor.Magenta;
             Console.WriteLine("LV UP!");
-
+            experiencePoints = 0;
 
         }
 
+        //En metod som håller koll på att pokemonen/tamagotchin lever!
         public bool GetAlive()
         {
             if (boredom <= 10 && hunger <= 10)

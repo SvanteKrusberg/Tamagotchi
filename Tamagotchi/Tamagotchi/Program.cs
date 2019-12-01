@@ -17,7 +17,7 @@ namespace Tamagotchi
             Console.ForegroundColor = ConsoleColor.White;
             RestClient client = new RestClient("https://pokeapi.co/api/v2/");
             string userinput;
-            //Skapar en lista med currys, där alla currys som spelaren skapar ska lagras
+            //Skapar en lista med currys, där alla currys som spelaren skapar skulle lagras (cancelled)
             List<Curry> currys;
             //Skapar tamagotchi instansen
             Tamagotchi tamagotchi1 = new Tamagotchi();
@@ -81,13 +81,20 @@ namespace Tamagotchi
             //En loop som körs så länge tamagotchin är vid liv
             while (tamagotchi1.GetAlive() == true)
             {
-                Console.WriteLine("What would you like to do?");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Caution! Don't let your pokemon's hunger or boredom get over 10!");
+                Console.ForegroundColor = ConsoleColor.White;
+
+                Console.WriteLine();
+                Console.WriteLine("Stats:");
                 tamagotchi1.PrintStats();
                 Console.WriteLine();
+                Console.WriteLine("What would you like to do?");
+                Console.WriteLine();
 
-                Console.WriteLine("A: Feed " + tamagotchi1.name);
-                Console.WriteLine("B: Train " + tamagotchi1.name);
-                Console.WriteLine("C: Cook curry with " + tamagotchi1.name);
+                Console.WriteLine("A: Feed " + tamagotchi1.name + " (reduce hunger)");
+                Console.WriteLine("B: Train " + tamagotchi1.name + " (gain exp)");
+                Console.WriteLine("C: Cook curry with " + tamagotchi1.name + " (reduce boredom)");
 
                 userinput = Console.ReadLine();
                 userinput = userinput.ToLower();
@@ -103,7 +110,8 @@ namespace Tamagotchi
                 {
                     tamagotchi1.Tick();
                     tamagotchi1.Train();
-                    if(true)
+
+                    if (tamagotchi1.experiencePoints >= tamagotchi1.requiredExp * tamagotchi1.GetLevel())
                     {
                         tamagotchi1.LevelUp();
 
@@ -129,8 +137,9 @@ namespace Tamagotchi
 
                 else
                 {
+                    Console.Clear();
                     Console.WriteLine("Please enter a valid action!");
-
+                    Console.WriteLine();
                 }
 
             }

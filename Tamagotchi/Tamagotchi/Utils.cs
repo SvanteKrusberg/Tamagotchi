@@ -8,6 +8,7 @@ namespace Tamagotchi
 {
     class Utils
     {
+        //En statisk random generator som kan användas i alla andra delar av programmet
         public static Random generator = new Random();
 
     }

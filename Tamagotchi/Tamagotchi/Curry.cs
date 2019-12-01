@@ -10,11 +10,12 @@ namespace Tamagotchi
     {
         public string name;
         private string[] rarity = { "Common", "Rare", "Legendary" };
-        private int[] foodPoints = { 1, 2, 3 };
         private int rarityDeclaration;
 
+        //Konstruktor som bestämmer rarity och namnet av curryn
         public Curry(string _name)
         {
+            //Genererar ett slumpmässigt värde som bestämmer rarity hos curryn
             int rarityDecider = Utils.generator.Next(10);
 
             if (rarityDecider == 0)
@@ -32,17 +33,20 @@ namespace Tamagotchi
 
             }
 
+            //Gör ett namn på curryn kombinerat med ingrediensen som spelaren väljer
             name = _name + " curry";
 
 
         }
 
+        //Returnerar curryns rarity
         public int GetCurryRarity()
         {
             return rarityDeclaration;
 
         }
 
+        //Returnerar curryns rarity som text i en string
         public string WriteCurryRarity()
         {
             if (rarity[rarityDeclaration] == "Common")
@@ -60,6 +64,8 @@ namespace Tamagotchi
                 return "Legendary";
 
             }
+            //Ännu en gång en else sats som aldrig ska kunna hända, men skulle det hända så får användaren
+            // en trevlig överraskning :)
             else
             {
                 return "UltraSuperDuperNotPossibleRarity";
